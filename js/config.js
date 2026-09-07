@@ -17,7 +17,7 @@ window.AEP = {
   canonicalUrl: "https://www.amorenprision.com",
 
   /* PEGA AQUÍ tu ID de Google Analytics 4. Ejemplo: "G-XXXXXXXXXX" */
-  googleAnalyticsId: "",
+  googleAnalyticsId: "G-L26VFVKY25",
 
   /* PEGA AQUÍ el código de verificación de Google Search Console. */
   googleSiteVerification: "",
