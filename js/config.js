@@ -32,7 +32,7 @@ window.AEP = {
    */
   videos: {
     "amor-en-prision-parte-1": "videos/amor-en-prision-parte-1.mp4",
-    "amor-en-prision-parte-2": "", // >>> PEGA AQUÍ la URL de la PARTE 2 cuando se publique
+    "amor-en-prision-parte-2": "videos/amor-en-prision-parte-2.mp4",
     "celdas-del-silencio-parte-1": "",
     "la-ultima-visita": "",
     "corazon-condenado": "",
