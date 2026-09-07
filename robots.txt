@@ -1,0 +1,6 @@
+# Cambia el dominio del Sitemap cuando publiques tu web.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.amorenprision.com/sitemap.xml

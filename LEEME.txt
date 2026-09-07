@@ -1,0 +1,113 @@
+AMOR EN PRISIÓN — Cómo usar y publicar esta web
+===============================================
+
+Este ZIP es un sitio ESTÁTICO (HTML, CSS, JS, imágenes y video).
+No necesita PHP, Node ni base de datos.
+
+VERLA EN TU COMPUTADORA (sin internet, sin hosting)
+---------------------------------------------------
+1. Descomprime el ZIP.
+2. Entra a la carpeta. Debes ver index.html AL MISMO NIVEL
+   que las carpetas css, js, images y videos.
+3. Haz DOBLE CLIC en index.html.
+   Se abre en tu navegador y puedes ver la Parte 1.
+
+No abras solo el archivo suelto copiado a otro sitio:
+tiene que estar junto a css/, js/, images/ y videos/.
+
+1) SUBIR AL HOSTING
+-------------------
+1. Descomprime este ZIP.
+2. Sube TODO el contenido (index.html, css, js, images, videos, pelicula…)
+   a la carpeta public_html de tu dominio
+   (o a la raíz del sitio).
+3. No subas este archivo LEEME.txt si no quieres. El resto sí.
+4. No subas _build_pages.py (es solo para regenerar páginas).
+
+Cuando termines, tu dominio debe abrir la portada:
+   https://tudominio.com/
+
+
+2) VIDEO DE LA PARTE 1
+----------------------
+La Parte 1 YA está incluida:
+
+   videos/amor-en-prision-parte-1.mp4
+   js/config.js  →  apunta a esa ruta.
+
+Sube también la carpeta videos/ junto con el resto.
+El reproductor está en formato vertical (9:16), como el clip.
+
+Cuando tengas la Parte 2, súbela a videos/ y pega la ruta en
+js/config.js, en "amor-en-prision-parte-2".
+
+3) ADSTERRA
+-----------
+Sigue en js/config.js, bloque adsterra.
+
+Pega el código OFICIAL que te dé Adsterra dentro de las comillas:
+
+   heroBelow        → banner debajo de la portada
+   betweenSections  → banner entre secciones
+   playerBefore     → banner ANTES del reproductor (nunca encima)
+   playerAfter      → banner DEBAJO del reproductor
+   siteHead         → script global del sitio
+
+Si lo dejas vacío, no se muestra ningún anuncio.
+No pegues anuncios de prueba.
+
+4) GOOGLE
+---------
+En el mismo js/config.js:
+
+   googleAnalyticsId: "G-XXXXXXXXXX",
+   googleSiteVerification: "el-codigo-de-search-console",
+
+Dominio canónico (SEO). Cámbialo a tu dominio real:
+
+   canonicalUrl: "https://www.tudominio.com",
+
+También sustituye https://www.amorenprision.com por tu dominio en:
+   - robots.txt
+   - sitemap.xml
+   (búsqueda y reemplazo en esos dos archivos)
+
+5) AÑADIR UNA PELÍCULA NUEVA
+----------------------------
+1. Sube el póster a /images/
+2. Copia la carpeta  pelicula/corazon-condenado/
+   y renuómbrala (ejemplo: pelicula/mi-titulo/).
+3. Edita el index.html de esa carpeta (título, textos, imagen).
+4. Añade una tarjeta en:
+      index.html
+      peliculas/index.html   o   miniseries/index.html
+      proximamente/index.html
+5. Si tiene video, crea  ver/mi-titulo/  copiando otra carpeta ver/
+   y registra la URL en js/config.js → videos.
+
+6) ESTRUCTURA
+-------------
+/
+  index.html                 Portada
+  peliculas/                 Listado de películas
+  miniseries/                Listado de miniseries
+  proximamente/              Calendario
+  contacto/                  Formulario
+  privacidad/
+  terminos/
+  pelicula/amor-en-prision/  Ficha
+  ver/amor-en-prision-parte-1/   Reproductor Parte 1
+  ver/amor-en-prision-parte-2/   Reservado Parte 2
+  css/site.css
+  js/config.js               ← edita este
+  js/site.js
+  images/
+  videos/amor-en-prision-parte-1.mp4   Parte 1 (ya incluida)
+  favicon.svg
+  robots.txt
+  sitemap.xml
+  .htaccess                  (Apache / Hostinger / cPanel)
+
+El formulario de contacto y el “Avísame” guardan el correo en el
+navegador del visitante. Cuando quieras recibirlos de verdad,
+conecta un servicio de correo (Formspree, Basin, tu PHP, etc.).
