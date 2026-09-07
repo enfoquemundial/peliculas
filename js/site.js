@@ -67,17 +67,61 @@
     document.head.appendChild(meta);
   }
 
+  // Los <script> insertados vía innerHTML nunca se ejecutan; se recrean
+  // para que el anuncio realmente cargue.
+  function cloneAsExecutable(oldScript) {
+    var fresh = document.createElement("script");
+    Array.prototype.forEach.call(oldScript.attributes, function (attr) {
+      fresh.setAttribute(attr.name, attr.value);
+    });
+    fresh.text = oldScript.textContent || "";
+    return fresh;
+  }
+
+  // Adsterra usa una variable global `atOptions` para saber qué anuncio
+  // mostrar. Si dos banners viven en el mismo documento, se pisan esa
+  // variable y solo se termina viendo uno. Cada anuncio va en su propio
+  // iframe (su propio "window"), así no compiten entre sí.
+  function adSize(html) {
+    var w = html.match(/['"]width['"]\s*:\s*(\d+)/i);
+    var h = html.match(/['"]height['"]\s*:\s*(\d+)/i);
+    return w && h ? { width: w[1], height: h[1] } : null;
+  }
+  function buildAdFrame(html) {
+    var size = adSize(html);
+    var frame = document.createElement("iframe");
+    frame.title = "Publicidad";
+    frame.scrolling = "no";
+    frame.style.border = "0";
+    if (size) {
+      frame.width = size.width;
+      frame.height = size.height;
+    }
+    frame.srcdoc =
+      '<!doctype html><html><head><style>html,body{margin:0;padding:0;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center;height:100%}</style></head><body>' +
+      html +
+      "</body></html>";
+    return frame;
+  }
+
   var ads = AEP.adsterra || {};
   if (ads.siteHead) {
     var hold = document.createElement("div");
     hold.innerHTML = ads.siteHead;
-    Array.from(hold.childNodes).forEach(function (n) { document.head.appendChild(n); });
+    Array.from(hold.childNodes).forEach(function (n) {
+      document.head.appendChild(n.tagName === "SCRIPT" ? cloneAsExecutable(n) : n);
+    });
   }
   document.querySelectorAll("[data-ad-slot]").forEach(function (el) {
     var html = ads[el.getAttribute("data-ad-slot")];
     if (html && String(html).trim()) {
-      el.className = "mx-auto w-full max-w-5xl overflow-hidden px-4 py-6";
-      el.innerHTML = '<div class="flex min-h-0 items-center justify-center">' + html + "</div>";
+      if (!el.classList.contains("ad-rail")) {
+        el.className = "mx-auto w-full max-w-5xl overflow-hidden px-4 py-6";
+      }
+      var wrap = document.createElement("div");
+      wrap.className = "flex min-h-0 items-center justify-center";
+      wrap.appendChild(buildAdFrame(html));
+      el.appendChild(wrap);
     }
   });
 

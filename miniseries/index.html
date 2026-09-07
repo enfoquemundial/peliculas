@@ -28,6 +28,8 @@
 </head>
 <body class="bg-bg text-fg">
   <div class="grain" aria-hidden="true"></div>
+  <div class="ad-rail ad-rail-left" data-ad-slot="railLeft"></div>
+  <div class="ad-rail ad-rail-right" data-ad-slot="railRight"></div>
   <div class="flex min-h-svh flex-col bg-bg text-fg">
 
   <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-modal focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-accent-fg">Saltar al contenido</a>
@@ -45,6 +47,7 @@
         <p class="kicker">Catálogo</p>
         <h1 class="mt-3 font-display text-4xl text-fg">Miniseries</h1>
         <p class="mt-3 max-w-xl text-muted">Historias en partes. Entra cuando quieras; la siguiente entrega llega aquí.</p>
+        <div class="mt-8"><div data-ad-slot="heroBelow"></div></div>
         <div class="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
     <article class="group relative">
       <a href="../ver/amor-en-prision-parte-1/index.html" class="block rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
@@ -82,8 +85,10 @@
         </div>
       </a>
     </article></div>
+        <div class="mt-12"><div data-ad-slot="playerBefore"></div></div>
       </div>
     </main>
+    <div data-ad-slot="betweenSections"></div>
 
   <footer class="mt-auto border-t border-border bg-surface">
     <div class="barbed" aria-hidden="true"></div>

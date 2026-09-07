@@ -2258,3 +2258,27 @@
   background: var(--color-player, #050405);
   object-fit: contain;
 }
+
+/* Anuncios fijos en los márgenes laterales: solo en pantallas muy anchas,
+   donde sobra espacio real a los costados del contenido centrado (max-w-6xl)
+   sin arriesgar tapar nada. */
+.ad-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: none;
+}
+@media (min-width: 1600px) {
+  .ad-rail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.ad-rail-left {
+  left: 24px;
+}
+.ad-rail-right {
+  right: 24px;
+}
